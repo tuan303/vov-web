@@ -3,11 +3,11 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <header className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-950">
+    <header className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#003b5c]">
       <div className="absolute inset-0 z-0">
         <img 
           alt="VOV Smart automation, smart building and smart factory system integration" 
-          className="w-full h-full object-cover" 
+          className="w-full h-full object-contain" 
           src="https://hoangmaistarschool.edu.vn/thongtin/bannervovsmart.png"
         />
       </div>
