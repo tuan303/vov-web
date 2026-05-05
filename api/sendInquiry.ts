@@ -203,7 +203,7 @@ ${message}`;
               <td align="center">
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e2e8f0;">
                   <tr>
-                    <td style="background:#003B5C;padding:24px 28px;color:#ffffff;">
+                    <td style="background:#003b5c;padding:24px 28px;color:#ffffff;">
                       <div style="font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#93c5fd;">VOV Smart Website</div>
                       <h1 style="margin:8px 0 0;font-size:24px;line-height:32px;font-weight:800;">New Contact Inquiry</h1>
                     </td>
@@ -233,7 +233,7 @@ ${message}`;
 
                       <div style="margin-top:20px;">
                         <div style="margin-bottom:8px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#64748b;">Message</div>
-                        <div style="padding:18px 20px;background:#0f172a;border-radius:12px;color:#e2e8f0;font-size:16px;line-height:26px;white-space:normal;">
+                        <div style="padding:18px 20px;background:#003b5c;border-radius:12px;color:#e2e8f0;font-size:16px;line-height:26px;white-space:normal;">
                           ${formatMessageHtml(message)}
                         </div>
                       </div>

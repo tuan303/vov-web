@@ -55,7 +55,7 @@ const CTA: React.FC = () => {
   return (
     <section className="py-24 px-6 bg-white dark:bg-slate-900 scroll-mt-24" id="contact">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-slate-950 rounded-[3rem] p-12 lg:p-20 text-white relative overflow-hidden reveal">
+        <div className="rounded-[3rem] p-12 lg:p-20 text-white relative overflow-hidden reveal" style={{ backgroundColor: '#003b5c' }}>
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 blur-[100px]"></div>
           
           <div className="grid lg:grid-cols-2 gap-16 relative z-10">
