@@ -18,13 +18,13 @@ const projects = [
     category: 'Industrial & Energy',
     name: 'VietsovPetro CCP Offshore Platforms',
     client: 'VietsovPetro',
-    scope: 'DCS and SIS upgrade and replacement (CENTUM, Fast/Tools)'
+    scope: 'Yokogawa DCS and SIS upgrade and replacement (CENTUM, Fast/Tools)'
   },
   {
     category: 'Manufacturing',
-    name: 'Nestlé Route 66 Factory Expansion',
-    client: 'Nestlé',
-    scope: 'Electrical & Automation installation and commissioning'
+    name: 'Nestle Route 66 Factory Expansion',
+    client: 'Nestle',
+    scope: 'Electrical automation, smart factory installation and commissioning'
   }
 ];
 
@@ -44,10 +44,10 @@ const Projects: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
           <div>
             <h2 className="text-accent font-bold uppercase tracking-widest text-sm mb-4">Project References</h2>
-            <h3 className="text-4xl font-black text-primary dark:text-white">Proven Track Record</h3>
+            <h3 className="text-4xl font-black text-primary dark:text-white">Automation, Yokogawa & Smart Factory Track Record</h3>
           </div>
           <p className="text-slate-500 max-w-md mt-4 md:mt-0">
-            Our team experience covers a wide range of industries including Oil & Gas, Power, Chemicals, and Manufacturing.
+            Our team experience covers Oil & Gas, Power, Chemicals, Manufacturing, smart building, home building, automation and digitalization projects.
           </p>
         </div>
         

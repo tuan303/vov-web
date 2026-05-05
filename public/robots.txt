@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vov-web-eight.vercel.app/sitemap.xml

@@ -4,17 +4,17 @@ import React from 'react';
 const services = [
   {
     title: 'Industrial Automation & Process Control',
-    items: ['DCS, PLC, SCADA, SIS, ICSS', 'Process instrumentation and control', 'Plant-wide monitoring, control, and safety systems', 'Simulator systems (OTS)'],
+    items: ['DCS, PLC, SCADA, SIS, ICSS', 'Yokogawa CENTUM and Fast/Tools engineering experience', 'Process instrumentation and control', 'Plant-wide monitoring, control, and safety systems', 'Simulator systems (OTS)'],
     icon: 'settings_input_component'
   },
   {
     title: 'Smart Factory Solutions',
-    items: ['Manufacturing execution systems (MES)', 'Plant information management (PIMS)', 'Utilities and process automation', 'OT–IT integration and data platforms'],
+    items: ['Manufacturing execution systems (MES)', 'Plant information management (PIMS)', 'Utilities and process automation', 'OT-IT integration, data platforms and digitalization'],
     icon: 'precision_manufacturing'
   },
   {
-    title: 'Smart Building & Facility Systems',
-    items: ['Building Management Systems (BMS)', 'Facility Management (FMCS)', 'Electrical power monitoring (ECMS)', 'ELV: CCTV, Access Control, PA/VA, Fire Alarm'],
+    title: 'Smart Building, Home Building & Facility Systems',
+    items: ['Building Management Systems (BMS)', 'Home building automation and facility control', 'Facility Management (FMCS)', 'Electrical power monitoring (ECMS)', 'ELV: CCTV, Access Control, PA/VA, Fire Alarm'],
     icon: 'domain'
   },
   {
@@ -30,7 +30,7 @@ const Services: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal">
           <h2 className="text-accent font-bold uppercase tracking-widest text-sm mb-4">Our Core Services</h2>
-          <h3 className="text-4xl font-black text-primary dark:text-white">Professional Integration Solutions</h3>
+          <h3 className="text-4xl font-black text-primary dark:text-white">Professional Automation & Smartbuilding Solutions</h3>
         </div>
         
         <div className="grid md:grid-cols-2 gap-8">

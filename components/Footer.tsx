@@ -14,12 +14,13 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="text-center text-sm text-slate-500">
-          © 2026 VOV Smart Technology JSC. All Rights Reserved.
+          (c) 2026 VOV Smart Technology JSC. All Rights Reserved.
         </div>
         
         <div className="flex gap-6">
            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Digitalization</span>
            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Automation</span>
+           <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Smart Factory</span>
         </div>
       </div>
     </footer>

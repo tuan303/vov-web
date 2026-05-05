@@ -6,7 +6,7 @@ const Hero: React.FC = () => {
     <header className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-950">
       <div className="absolute inset-0 z-0">
         <img 
-          alt="Smart Industry background" 
+          alt="VOV Smart automation, smart building and smart factory system integration" 
           className="w-full h-full object-cover opacity-30" 
           src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80"
         />
@@ -24,14 +24,14 @@ const Hero: React.FC = () => {
            </div>
         </div>
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight text-white leading-[1.1]">
-          SYSTEM INTEGRATION
+          VOV Smart System Integration
         </h1>
         <p className="text-xl md:text-2xl text-blue-200 font-light tracking-widest uppercase mb-8">
-          Smart Building | Smart Factory | Automation | Digitalization
+          Automation | Yokogawa | Smart Building | Smart Factory | Digitalization
         </p>
         <div className="h-1 w-24 bg-accent mx-auto mb-8"></div>
         <h2 className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-medium">
-          VOV SMART TECHNOLOGY JOINT STOCK COMPANY
+          Industrial automation, home building systems, smartbuilding solutions, and OT-IT digitalization by VOV SMART TECHNOLOGY JOINT STOCK COMPANY.
         </h2>
         
         <div className="mt-12 flex flex-wrap justify-center gap-4">
