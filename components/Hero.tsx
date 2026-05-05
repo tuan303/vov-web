@@ -7,10 +7,9 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 z-0">
         <img 
           alt="VOV Smart automation, smart building and smart factory system integration" 
-          className="w-full h-full object-cover opacity-30" 
+          className="w-full h-full object-cover" 
           src="https://hoangmaistarschool.edu.vn/thongtin/bannervovsmart.png"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-transparent to-slate-950"></div>
       </div>
       
       <div className="relative z-10 text-center px-6 max-w-6xl mx-auto reveal">
