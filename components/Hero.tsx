@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
         <img 
           alt="VOV Smart automation, smart building and smart factory system integration" 
           className="w-full h-full object-cover opacity-30" 
-          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80"
+          src="https://hoangmaistarschool.edu.vn/thongtin/bannervovsmart.png"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-transparent to-slate-950"></div>
       </div>
