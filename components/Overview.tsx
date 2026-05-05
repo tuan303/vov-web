@@ -16,7 +16,7 @@ const Overview: React.FC = () => {
             <h2 className="text-accent font-bold uppercase tracking-wider text-sm mb-4">Company Overview</h2>
             <h3 className="text-4xl font-black text-primary dark:text-white mb-8">Automation, Smart Building & Digitalization Excellence</h3>
             <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-              VOV Smart Technology JSC is a Vietnam-based technology and engineering company specializing in industrial automation, Yokogawa system integration, smart buildings, home building systems, smart factories, and facility control systems.
+              VOV Smart Technology JSC is a Vietnam-based technology and engineering company specializing in industrial automation, process control system integration, smart buildings, home building systems, smart factories, and facility control systems.
             </p>
             <p className="text-lg text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
               We deliver end-to-end engineering and integration services that connect <strong>Operational Technology (OT)</strong> with <strong>Information Technology (IT)</strong>, enabling safe, reliable, efficient operation and practical digitalization for industrial and commercial facilities.

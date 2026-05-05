@@ -4,7 +4,7 @@ import React from 'react';
 const services = [
   {
     title: 'Industrial Automation & Process Control',
-    items: ['DCS, PLC, SCADA, SIS, ICSS', 'Yokogawa CENTUM and Fast/Tools engineering experience', 'Process instrumentation and control', 'Plant-wide monitoring, control, and safety systems', 'Simulator systems (OTS)'],
+    items: ['DCS, PLC, SCADA, SIS, ICSS', 'Process control platform engineering experience', 'Process instrumentation and control', 'Plant-wide monitoring, control, and safety systems', 'Simulator systems (OTS)'],
     icon: 'settings_input_component'
   },
   {

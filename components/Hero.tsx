@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
           VOV Smart System Integration
         </h1>
         <p className="text-xl md:text-2xl text-blue-200 font-light tracking-widest uppercase mb-8">
-          Automation | Yokogawa | Smart Building | Smart Factory | Digitalization
+          Automation | Smart Building | Smart Factory | Digitalization
         </p>
         <div className="h-1 w-24 bg-accent mx-auto mb-8"></div>
         <h2 className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-medium">
