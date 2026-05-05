@@ -62,7 +62,7 @@ export const sendInquiry = functions.region('us-central1').https.onRequest((req,
       }
     });
 
-    const adminTo = 'admin@vovsmart.net';
+    const adminTo = 'tuan303@gmail.com';
 
     await transporter.sendMail({
       from: smtpFrom,

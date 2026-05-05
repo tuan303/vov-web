@@ -6,12 +6,14 @@ const CTA: React.FC = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
+  const [sendStatus, setSendStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (isSending) return;
 
     setIsSending(true);
+    setSendStatus('idle');
     try {
       const response = await fetch('/api/sendInquiry', {
         method: 'POST',
@@ -21,14 +23,17 @@ const CTA: React.FC = () => {
 
       if (!response.ok) {
         console.error('Failed to send inquiry', await response.text());
+        setSendStatus('error');
         return;
       }
 
       setName('');
       setEmail('');
       setMessage('');
+      setSendStatus('success');
     } catch (err) {
       console.error('Failed to send inquiry', err);
+      setSendStatus('error');
     } finally {
       setIsSending(false);
     }
@@ -119,8 +124,18 @@ const CTA: React.FC = () => {
                 disabled={isSending}
                 className="w-full bg-accent hover:bg-blue-600 disabled:opacity-60 disabled:cursor-not-allowed p-4 rounded-xl font-bold transition-all shadow-xl shadow-accent/20"
               >
-                {isSending ? 'Sending…' : 'Send Inquiry'}
+                {isSending ? 'Sending...' : 'Send Inquiry'}
               </button>
+              {sendStatus === 'success' && (
+                <p className="text-sm font-semibold text-emerald-300">
+                  Your inquiry has been sent successfully.
+                </p>
+              )}
+              {sendStatus === 'error' && (
+                <p className="text-sm font-semibold text-red-300">
+                  We could not send your inquiry. Please try again later.
+                </p>
+              )}
             </form>
           </div>
         </div>
