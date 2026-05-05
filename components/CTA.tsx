@@ -7,6 +7,7 @@ const CTA: React.FC = () => {
   const [message, setMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [sendStatus, setSendStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -14,6 +15,7 @@ const CTA: React.FC = () => {
 
     setIsSending(true);
     setSendStatus('idle');
+    setStatusMessage('');
     try {
       const response = await fetch('/api/sendInquiry', {
         method: 'POST',
@@ -22,8 +24,17 @@ const CTA: React.FC = () => {
       });
 
       if (!response.ok) {
-        console.error('Failed to send inquiry', await response.text());
+        const errorText = await response.text();
+        console.error('Failed to send inquiry', errorText);
         setSendStatus('error');
+        setStatusMessage('We could not send your inquiry. Please try again later.');
+        return;
+      }
+
+      const result = await response.json();
+      if (!result?.ok) {
+        setSendStatus('error');
+        setStatusMessage('We could not send your inquiry. Please try again later.');
         return;
       }
 
@@ -31,9 +42,11 @@ const CTA: React.FC = () => {
       setEmail('');
       setMessage('');
       setSendStatus('success');
+      setStatusMessage('Your inquiry has been sent successfully. We will contact you soon.');
     } catch (err) {
       console.error('Failed to send inquiry', err);
       setSendStatus('error');
+      setStatusMessage('We could not send your inquiry. Please try again later.');
     } finally {
       setIsSending(false);
     }
@@ -126,15 +139,18 @@ const CTA: React.FC = () => {
               >
                 {isSending ? 'Sending...' : 'Send Inquiry'}
               </button>
-              {sendStatus === 'success' && (
-                <p className="text-sm font-semibold text-emerald-300">
-                  Your inquiry has been sent successfully.
-                </p>
-              )}
-              {sendStatus === 'error' && (
-                <p className="text-sm font-semibold text-red-300">
-                  We could not send your inquiry. Please try again later.
-                </p>
+              {sendStatus !== 'idle' && (
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className={`rounded-xl border px-4 py-3 text-sm font-semibold ${
+                    sendStatus === 'success'
+                      ? 'border-emerald-400/30 bg-emerald-400/10 text-emerald-200'
+                      : 'border-red-400/30 bg-red-400/10 text-red-200'
+                  }`}
+                >
+                  {statusMessage}
+                </div>
               )}
             </form>
           </div>
