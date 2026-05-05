@@ -13,27 +13,18 @@ const Hero: React.FC = () => {
       </div>
       
       <div className="relative z-10 text-center px-6 max-w-6xl mx-auto reveal">
-        <div className="flex justify-center mb-8">
-            <div className="bg-white p-2 md:p-3 rounded-lg shadow-2xl">
-              <img
-                src="https://hoangmaistarschool.edu.vn/thongtin/VOVH.png"
-                alt="VOV Smart logo"
-                className="h-16 md:h-20 w-auto"
-              />
-           </div>
-        </div>
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight text-white leading-[1.1]">
+        <h1 className="sr-only">
           VOV Smart System Integration
         </h1>
-        <p className="text-xl md:text-2xl text-blue-200 font-light tracking-widest uppercase mb-8">
+        <p className="sr-only">
           Automation | Smart Building | Smart Factory | Digitalization
         </p>
-        <div className="h-1 w-24 bg-accent mx-auto mb-8"></div>
-        <h2 className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-medium">
+        <h2 className="sr-only">
           Industrial automation, home building systems, smartbuilding solutions, and OT-IT digitalization by VOV SMART TECHNOLOGY JOINT STOCK COMPANY.
         </h2>
+        <div className="h-72 md:h-96" aria-hidden="true"></div>
         
-        <div className="mt-12 flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-4">
           <a href="#services" className="px-8 py-4 bg-accent hover:bg-blue-600 text-white font-bold rounded-lg transition-all transform hover:-translate-y-1">
             Our Services
           </a>
