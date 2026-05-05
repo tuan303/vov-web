@@ -29,6 +29,7 @@ const projects = [
 ];
 
 const vendors = [
+  { name: 'Yokogawa', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Yokogawa_logo.svg/1280px-Yokogawa_logo.svg.png' },
   { name: 'Siemens', url: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Siemens-logo.svg' },
   { name: 'Emerson', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/EmersonElectricLogo.png/1280px-EmersonElectricLogo.png' },
   { name: 'ABB', url: 'https://upload.wikimedia.org/wikipedia/commons/0/00/ABB_logo.svg' },
