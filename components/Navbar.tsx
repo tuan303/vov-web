@@ -17,13 +17,13 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav border-b border-slate-200 dark:border-slate-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <a href="/" className="flex items-center gap-2" aria-label="VOV Smart home">
           <img
-            src="https://hoangmaistarschool.edu.vn/thongtin/vov.png"
+            src="https://hoangmaistarschool.edu.vn/thongtin/VOVH.png"
             alt="VOV Smart logo"
             className="h-14 sm:h-14 w-auto"
           />
-        </div>
+        </a>
 
         <div className="flex items-center gap-3 sm:gap-6">
           <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600 dark:text-slate-300">
