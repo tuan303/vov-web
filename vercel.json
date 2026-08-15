@@ -18,8 +18,8 @@
       "destination": "https://document.vovsmart.net/download/:path*"
     },
     {
-      "source": "/test.txt",
-      "destination": "https://document.vovsmart.net/test.txt"
+      "source": "/projects/:path*",
+      "destination": "https://document.vovsmart.net/projects/:path*"
     }
   ]
 }
