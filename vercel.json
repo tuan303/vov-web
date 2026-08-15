@@ -2,8 +2,24 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-      "source": "/files/:path*",
-      "destination": "https://document.vovsmart.net/:path*"
+      "source": "/pdf/:path*",
+      "destination": "https://document.vovsmart.net/pdf/:path*"
+    },
+    {
+      "source": "/picture/:path*",
+      "destination": "https://document.vovsmart.net/picture/:path*"
+    },
+    {
+      "source": "/catalogue/:path*",
+      "destination": "https://document.vovsmart.net/catalogue/:path*"
+    },
+    {
+      "source": "/download/:path*",
+      "destination": "https://document.vovsmart.net/download/:path*"
+    },
+    {
+      "source": "/test.txt",
+      "destination": "https://document.vovsmart.net/test.txt"
     }
   ]
 }
