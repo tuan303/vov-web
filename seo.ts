@@ -17,7 +17,7 @@ function structuredData(lang: Lang) {
         name: SITE.legalName,
         alternateName: ['VOVSmart', 'VOV Smart', 'VOV SMART TECHNOLOGY JSC'],
         url: `${SITE.origin}/`,
-        logo: { '@type': 'ImageObject', url: SITE.origin + SITE.images.logoSchema, width: 832, height: 208 },
+        logo: SITE.images.logo,
         email: SITE.email,
         telephone: SITE.phoneSchema,
         taxID: SITE.taxId,

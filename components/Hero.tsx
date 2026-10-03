@@ -1,40 +1,41 @@
+import { SITE, type Dictionary } from '../content';
+import Picture, { heroPicture } from './Picture';
 
-import React from 'react';
-
-const Hero: React.FC = () => {
+export default function Hero({ t }: { t: Dictionary }) {
   return (
-    <header className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#003b5c]">
-      <div className="absolute inset-0 z-0">
-        <img 
-          alt="VOV Smart automation, smart building and smart factory system integration" 
-          className="w-full h-full object-contain" 
-          src="https://hoangmaistarschool.edu.vn/thongtin/bannervovsmart.png"
+    <header className="pt-20 bg-ink text-white">
+      <div className="max-w-[1825px] mx-auto">
+        <Picture
+          {...heroPicture}
+          fallbackExt="jpg"
+          alt={t.hero.imageAlt}
+          width={SITE.images.heroWidth}
+          height={SITE.images.heroHeight}
+          className="block w-full h-auto"
+          priority
         />
       </div>
-      
-      <div className="relative z-10 text-center px-6 max-w-6xl mx-auto reveal">
-        <h1 className="sr-only">
-          VOV Smart System Integration
-        </h1>
-        <p className="sr-only">
-          Automation | Smart Building | Smart Factory | Digitalization
-        </p>
-        <h2 className="sr-only">
-          Industrial automation, home building systems, smartbuilding solutions, and OT-IT digitalization by VOV SMART TECHNOLOGY JOINT STOCK COMPANY.
-        </h2>
-        <div className="h-72 md:h-96" aria-hidden="true"></div>
-        
-        <div className="flex flex-wrap justify-center gap-4">
-          <a href="#services" className="px-8 py-4 bg-accent hover:bg-blue-600 text-white font-bold rounded-lg transition-all transform hover:-translate-y-1">
-            Our Services
+
+      <div className="max-w-7xl mx-auto px-6 pt-10 pb-14 md:pt-12 md:pb-16 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+        <div className="max-w-3xl">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight text-balance">{t.hero.title}</h1>
+          <p className="mt-5 text-lg md:text-xl leading-relaxed text-blue-100">{t.hero.lead}</p>
+        </div>
+        <div className="flex flex-wrap gap-4">
+          <a
+            href="#services"
+            className="px-7 py-4 bg-accent-ink hover:bg-[#0052AB] text-white font-bold rounded-lg transition-colors"
+          >
+            {t.hero.ctaServices}
           </a>
-          <a href="#projects" className="px-8 py-4 border border-white/30 hover:bg-white/10 text-white font-bold rounded-lg transition-all">
-            Project References
+          <a
+            href="#projects"
+            className="px-7 py-4 border border-white/40 hover:bg-white/10 text-white font-bold rounded-lg transition-colors"
+          >
+            {t.hero.ctaProjects}
           </a>
         </div>
       </div>
     </header>
   );
-};
-
-export default Hero;
+}

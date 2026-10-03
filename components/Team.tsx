@@ -1,67 +1,39 @@
+import { SITE, type Dictionary } from '../content';
+import { Icon } from '../icons';
 
-import React from 'react';
-
-const members = [
-  {
-    name: 'Pham Tien Van',
-    role: 'Chairman',
-    bio: 'Senior automation professional with 20+ years of international experience in industrial automation and EPC projects.'
-  },
-  {
-    name: 'Bui Tran Vuong',
-    role: 'Director',
-    bio: 'Responsible for corporate management, legal representation, and business operations.'
-  },
-  {
-    name: 'Pham Do Duong',
-    role: 'Engineering Manager',
-    bio: 'Manages engineering execution, technical quality, and project delivery.'
-  },
-  {
-    name: 'Nguyen Thi Mai Hanh',
-    role: 'Sales Manager',
-    bio: 'Leads sales strategy, customer engagement, and partner development.'
-  }
-];
-
-const Team: React.FC = () => {
-  const contactEmail = 'admin@vovsmart.net';
-
+export default function Team({ t }: { t: Dictionary }) {
   return (
-    <section
-      className="py-24 px-6 bg-slate-50 dark:bg-slate-950 scroll-mt-24"
-      id="management"
-      spellCheck={false}
-      data-gramm="false"
-      data-gramm_editor="false"
-      data-enable-grammarly="false"
-    >
+    <section className="py-20 md:py-24 px-6 bg-slate-50 scroll-mt-24" id="management" aria-labelledby="management-title">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 reveal">
-          <h2 className="text-accent font-bold uppercase tracking-widest text-sm mb-4">Management Team</h2>
-          <h3 className="text-4xl font-black text-primary dark:text-white">Experienced Leadership</h3>
+        <div className="text-center mb-16">
+          <p className="text-accent-ink font-bold uppercase tracking-widest text-sm mb-4">{t.team.eyebrow}</p>
+          <h2 id="management-title" className="text-3xl md:text-4xl font-black text-primary text-balance">
+            {t.team.title}
+          </h2>
         </div>
-        
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {members.map((m, idx) => (
-            <div key={idx} className="bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-800 reveal">
-              <div className="w-20 h-20 bg-primary rounded-full mb-6 flex items-center justify-center text-white text-2xl font-bold">
-                {m.name.charAt(0)}
+
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {t.team.members.map((m) => (
+            <li key={m.role} className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100">
+              <div
+                className="w-20 h-20 bg-primary rounded-full mb-6 flex items-center justify-center text-white text-2xl font-bold"
+                aria-hidden="true"
+              >
+                {m.initial}
               </div>
-              <p className="text-accent font-bold text-xs uppercase mb-4 tracking-tighter">{m.role}</p>
-              <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 leading-relaxed">
-                {m.bio}
-              </p>
-              <a href={`mailto:${contactEmail}`} className="text-xs font-bold text-primary dark:text-blue-300 hover:text-accent flex items-center gap-2">
-                <span className="material-symbols-outlined text-sm">mail</span>
-                Contact
+              <h3 className="text-accent-ink font-bold text-xs uppercase mb-4 tracking-tight">{m.role}</h3>
+              <p className="text-slate-600 text-sm mb-6 leading-relaxed">{m.bio}</p>
+              <a
+                href={`mailto:${SITE.email}`}
+                className="text-xs font-bold text-primary hover:text-accent inline-flex items-center gap-2"
+              >
+                <Icon name="mail" className="w-4 h-4" />
+                {t.team.contactLabel}
               </a>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
-};
-
-export default Team;
+}

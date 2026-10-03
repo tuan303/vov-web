@@ -2,9 +2,11 @@ import type { IncomingMessage, ServerResponse } from 'http';
 import https from 'https';
 
 type InquiryPayload = {
-  name?: string;
-  email?: string;
-  message?: string;
+  name?: unknown;
+  email?: unknown;
+  message?: unknown;
+  lang?: unknown;
+  hp_field?: unknown;
 };
 
 type GraphTokenResponse = {
@@ -17,7 +19,19 @@ type HttpsResponse = {
 };
 
 type RequestWithBody = IncomingMessage & {
-  body?: InquiryPayload;
+  body?: unknown;
+};
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+const asText = (value: unknown, maxLength: number) =>
+  (typeof value === 'string' ? value : '').trim().slice(0, maxLength);
+
+/** Gửi từ trình duyệt không chạy JavaScript (biểu mẫu thường) thì chuyển hướng về trang, kèm thông báo */
+const redirectToPage = (res: ServerResponse, lang: string, ok: boolean) => {
+  res.statusCode = 303;
+  res.setHeader('Location', `${lang === 'vi' ? '/vi' : '/'}#${ok ? 'contact-sent' : 'contact-failed'}`);
+  res.end();
 };
 
 const escapeHtml = (value: string) =>
@@ -36,22 +50,38 @@ const json = (res: ServerResponse, statusCode: number, body: unknown) => {
   res.end(JSON.stringify(body));
 };
 
-const readJsonBody = async (req: RequestWithBody): Promise<InquiryPayload> => {
-  if (req.body && typeof req.body === 'object') {
-    return req.body;
+const readBody = async (req: RequestWithBody): Promise<{ payload: InquiryPayload; isFormPost: boolean }> => {
+  const contentType = String(req.headers['content-type'] ?? '').toLowerCase();
+  const isFormPost = contentType.includes('application/x-www-form-urlencoded');
+
+  // Vercel thường đã tự phân tích body thành object
+  if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
+    return { payload: req.body as InquiryPayload, isFormPost };
   }
 
-  const chunks: Buffer[] = [];
-  for await (const chunk of req) {
-    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+  let rawBody = '';
+  if (typeof req.body === 'string') {
+    rawBody = req.body;
+  } else if (Buffer.isBuffer(req.body)) {
+    rawBody = req.body.toString('utf8');
+  } else {
+    const chunks: Buffer[] = [];
+    for await (const chunk of req) {
+      chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+    }
+    rawBody = Buffer.concat(chunks).toString('utf8');
   }
 
-  const rawBody = Buffer.concat(chunks).toString('utf8').trim();
+  rawBody = rawBody.trim();
   if (!rawBody) {
-    return {};
+    return { payload: {}, isFormPost };
   }
-
-  return JSON.parse(rawBody) as InquiryPayload;
+  if (isFormPost) {
+    return { payload: Object.fromEntries(new URLSearchParams(rawBody)), isFormPost };
+  }
+  const parsed: unknown = JSON.parse(rawBody);
+  const payload = parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? (parsed as InquiryPayload) : {};
+  return { payload, isFormPost };
 };
 
 const httpsRequest = (url: string, body: string, headers: Record<string, string>): Promise<HttpsResponse> => {
@@ -158,15 +188,37 @@ export default async function handler(req: RequestWithBody, res: ServerResponse)
     return;
   }
 
+  let payload: InquiryPayload;
+  let isFormPost = false;
   try {
-    const payload = await readJsonBody(req);
+    ({ payload, isFormPost } = await readBody(req));
+  } catch {
+    json(res, 400, { ok: false, error: 'Invalid request body' });
+    return;
+  }
 
-    const name = (payload.name ?? '').toString().trim().slice(0, 120);
-    const email = (payload.email ?? '').toString().trim().slice(0, 200);
-    const message = (payload.message ?? '').toString().trim().slice(0, 5000);
+  const lang = payload.lang === 'vi' ? 'vi' : 'en';
+  const reply = (statusCode: number, body: { ok: boolean; error?: string }) =>
+    isFormPost ? redirectToPage(res, lang, body.ok) : json(res, statusCode, body);
+
+  // Ô bẫy chống thư rác có dữ liệu → máy tự động gửi: báo thành công nhưng không gửi email
+  if (asText(payload.hp_field, 200)) {
+    reply(200, { ok: true });
+    return;
+  }
+
+  try {
+    const name = asText(payload.name, 120);
+    const email = asText(payload.email, 200);
+    const message = asText(payload.message, 5000);
 
     if (!name || !email || !message) {
-      json(res, 400, { ok: false, error: 'Missing required fields' });
+      reply(400, { ok: false, error: 'Missing required fields' });
+      return;
+    }
+
+    if (!EMAIL_PATTERN.test(email)) {
+      reply(400, { ok: false, error: 'Invalid email address' });
       return;
     }
 
@@ -174,7 +226,7 @@ export default async function handler(req: RequestWithBody, res: ServerResponse)
     const recipient = process.env.CONTACT_RECIPIENT?.trim();
 
     if (!sender || !recipient) {
-      json(res, 500, { ok: false, error: 'Email service is not configured.' });
+      reply(500, { ok: false, error: 'Email service is not configured.' });
       return;
     }
 
@@ -186,10 +238,12 @@ export default async function handler(req: RequestWithBody, res: ServerResponse)
       hour: '2-digit',
       minute: '2-digit'
     });
+    const pageLabel = lang === 'vi' ? 'Vietnamese (/vi)' : 'English (/)';
     const plainText = `New website inquiry - VOV Smart
 
 Name: ${name}
 Email: ${email}
+Page: ${pageLabel}
 Submitted: ${submittedAt} (GMT+7)
 
 Message:
@@ -224,6 +278,10 @@ ${message}`;
                           <td style="padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:0 10px 10px 0;font-size:15px;color:#0f172a;">
                             <a href="mailto:${escapeHtml(email)}" style="color:#007BFF;text-decoration:none;font-weight:700;">${escapeHtml(email)}</a>
                           </td>
+                        </tr>
+                        <tr>
+                          <td style="width:120px;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-right:0;border-radius:10px 0 0 10px;font-size:12px;font-weight:700;text-transform:uppercase;color:#64748b;">Page</td>
+                          <td style="padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:0 10px 10px 0;font-size:15px;color:#0f172a;">${escapeHtml(pageLabel)}</td>
                         </tr>
                         <tr>
                           <td style="width:120px;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-right:0;border-radius:10px 0 0 10px;font-size:12px;font-weight:700;text-transform:uppercase;color:#64748b;">Submitted</td>
@@ -266,9 +324,9 @@ ${message}`;
       html
     });
 
-    json(res, 200, { ok: true });
+    reply(200, { ok: true });
   } catch (err) {
     console.error('Failed to send contact inquiry', err);
-    json(res, 500, { ok: false, error: 'Failed to send inquiry email' });
+    reply(500, { ok: false, error: 'Failed to send inquiry email' });
   }
 }

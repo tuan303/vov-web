@@ -42,7 +42,9 @@ export const SITE = {
     heroWidth: 1825,
     heroHeight: 862,
     og: '/images/og-image.jpg',
-    logoSchema: '/images/logo-vovsmart-832.png',
+    // Logo lấy từ máy chủ tài liệu (www.vovsmart.net/picture/ → document.vovsmart.net/picture/).
+    // Muốn đổi logo: thay file VOVH.png trên máy chủ tài liệu, không cần sửa code.
+    logo: 'https://www.vovsmart.net/picture/VOVH.png',
   },
 };
 

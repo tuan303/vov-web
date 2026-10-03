@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vov-web-eight.vercel.app/sitemap.xml
+Sitemap: https://www.vovsmart.net/sitemap.xml

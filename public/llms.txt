@@ -1,0 +1,27 @@
+# VOVSmart – VOV Smart Technology Joint Stock Company
+
+> Vietnam-based technology and engineering company specializing in industrial automation, process control system integration, smart buildings, home building systems, smart factories and facility control systems. Connecting operational technology (OT) with information technology (IT) for industrial and commercial facilities.
+
+## Services
+- Industrial automation & process control: DCS, PLC, SCADA, SIS, ICSS; process instrumentation and control; plant-wide monitoring, control and safety systems; simulator systems (OTS)
+- Smart factory: manufacturing execution systems (MES), plant information management (PIMS), utilities and process automation, OT-IT integration, data platforms and digitalization
+- Smart building, home building & facility systems: BMS, home building automation and facility control, FMCS, electrical power monitoring (ECMS), ELV (CCTV, access control, PA/VA, fire alarm)
+- Engineering & project management: conceptual design, FEED, detailed engineering, engineering calculations and specifications, project management (PMP-oriented), EPC/EPCM and PMC support
+- Projects executed in compliance with TCVN, IEC, ISA, IEEE, API, NFPA, DIN, ISO
+
+## Project references
+- Hanoi Metro Line 3 (client: MRB | Thales / Alstom JV): telecom systems, ICS, ATS/SCADA, power & BMS SCADA
+- Bosch Smart Lockers & Facility Management (client: Bosch Global Software Company): 6000 smart lockers, HVAC, smart meeting room, security
+- VietsovPetro CCP Offshore Platforms (client: VietsovPetro): DCS and SIS upgrade and replacement for process control systems
+- Nestle Route 66 Factory Expansion (client: Nestle): electrical automation, smart factory installation and commissioning
+
+## Company details
+- Legal name: VOV Smart Technology Joint Stock Company
+- Tax code: 0111327434
+- Address: 36 Nguyen Dong Chi, Tu Liem, Hanoi, Vietnam
+- Email: admin@vovsmart.net
+- Phone: +84 904 575 302
+
+## Pages
+- English: https://www.vovsmart.net/
+- Tiếng Việt: https://www.vovsmart.net/vi

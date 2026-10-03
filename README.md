@@ -20,7 +20,8 @@ Khi sửa nội dung đáng kể, đổi `CONTENT_UPDATED` sang ngày sửa đ�
 - Lúc build, mọi trang được **dựng sẵn thành HTML hoàn chỉnh**: Google và các công cụ tìm kiếm đọc được toàn bộ nội dung ngay, không phải chờ JavaScript.
 - Trên trình duyệt chỉ có một file JavaScript dưới 1 KB (`client.ts`) để gửi biểu mẫu liên hệ. Nếu trình duyệt tắt JavaScript, biểu mẫu vẫn gửi được.
 - Giao diện dùng Tailwind được biên dịch sẵn và nhúng thẳng vào trang; phông Inter và biểu tượng được lưu ngay trong dự án, không tải từ máy chủ ngoài.
-- Ảnh nằm trong `public/images/`, mỗi ảnh có nhiều cỡ (WebP cho trình duyệt mới, JPEG/PNG cho trình duyệt cũ). Khi thay banner hoặc logo cần tạo lại đủ các cỡ với **đúng tên file cũ** (`hero-640/800/960/1280/1825`, `logo-vovsmart-448/832`, `og-image.jpg`).
+- Ảnh nằm trong `public/images/`, mỗi ảnh có nhiều cỡ (WebP cho trình duyệt mới, JPEG/PNG cho trình duyệt cũ). Khi thay banner cần tạo lại đủ các cỡ với **đúng tên file cũ** (`hero-640/800/960/1280/1825`, `og-image.jpg`).
+- **Logo** lấy từ `https://www.vovsmart.net/picture/VOVH.png` (máy chủ tài liệu document.vovsmart.net). Muốn đổi logo chỉ cần thay file `VOVH.png` trên máy chủ tài liệu, không phải sửa code. Link này khai báo một chỗ duy nhất trong `content.ts` (`SITE.images.logo`).
 
 ## Cấu trúc thư mục
 

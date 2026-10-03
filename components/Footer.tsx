@@ -1,30 +1,31 @@
+import { SITE, type Dictionary, type Lang } from '../content';
 
-import React from 'react';
-
-const Footer: React.FC = () => {
+export default function Footer({ lang, t }: { lang: Lang; t: Dictionary }) {
   return (
-    <footer className="py-12 px-6 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 transition-colors">
+    <footer className="py-12 px-6 border-t border-slate-100 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        <div className="flex flex-col items-center md:items-start">
+        <a href={SITE.paths[lang]} aria-label={t.nav.homeLabel}>
           <img
-            src="https://hoangmaistarschool.edu.vn/thongtin/VOVH.png"
-            alt="VOV Smart logo"
+            src={SITE.images.logo}
+            alt={t.nav.logoAlt}
+            width={416}
+            height={104}
+            loading="lazy"
+            decoding="async"
             className="h-[6.5rem] w-auto"
           />
-        </div>
-        
-        <div className="text-center text-sm text-slate-500">
-          (c) 2026 VOV Smart Technology JSC. All Rights Reserved.
-        </div>
-        
-        <div className="flex gap-6">
-           <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Digitalization</span>
-           <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Automation</span>
-           <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Smart Factory</span>
-        </div>
+        </a>
+
+        <p className="text-center text-sm text-slate-600">{t.footer.rights}</p>
+
+        <ul className="flex flex-wrap justify-center gap-6">
+          {t.footer.tags.map((tag) => (
+            <li key={tag} className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+              {tag}
+            </li>
+          ))}
+        </ul>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
