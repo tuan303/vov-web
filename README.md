@@ -1,73 +1,59 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Website VOVSmart – www.vovsmart.net
 
-# Run and deploy your AI Studio app
+Website giới thiệu công ty VOV Smart Technology JSC, hai ngôn ngữ:
 
-This contains everything you need to run your app locally.
+| Trang | Địa chỉ | File được tạo khi build |
+|---|---|---|
+| Tiếng Anh | https://www.vovsmart.net/ | `dist/index.html` |
+| Tiếng Việt | https://www.vovsmart.net/vi | `dist/vi.html` |
 
-View your app in AI Studio: https://ai.studio/apps/drive/1zOtKvxVJdBhlOHbw_r3u8WlMkTgv8lTP
+Dự án nối với Vercel: mỗi lần đẩy code lên GitHub, Vercel tự build và cập nhật trang (khoảng 1–2 phút).
 
-## Run Locally
+## Sửa nội dung
 
-**Prerequisites:**  Node.js
+Toàn bộ chữ của cả hai ngôn ngữ nằm trong **`content.ts`** (mỗi đoạn có bản `en` và `vi`).
+Thông tin công ty (email, điện thoại, địa chỉ, mã số thuế) nằm ở phần `SITE` đầu file.
+Khi sửa nội dung đáng kể, đổi `CONTENT_UPDATED` sang ngày sửa để Google biết trang đã cập nhật.
 
+## Cách website hoạt động
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- Lúc build, mọi trang được **dựng sẵn thành HTML hoàn chỉnh**: Google và các công cụ tìm kiếm đọc được toàn bộ nội dung ngay, không phải chờ JavaScript.
+- Trên trình duyệt chỉ có một file JavaScript dưới 1 KB (`client.ts`) để gửi biểu mẫu liên hệ. Nếu trình duyệt tắt JavaScript, biểu mẫu vẫn gửi được.
+- Giao diện dùng Tailwind được biên dịch sẵn và nhúng thẳng vào trang; phông Inter và biểu tượng được lưu ngay trong dự án, không tải từ máy chủ ngoài.
+- Ảnh nằm trong `public/images/`, mỗi ảnh có nhiều cỡ (WebP cho trình duyệt mới, JPEG/PNG cho trình duyệt cũ). Khi thay banner hoặc logo cần tạo lại đủ các cỡ với **đúng tên file cũ** (`hero-640/800/960/1280/1825`, `logo-vovsmart-448/832`, `og-image.jpg`).
 
-## Deploy to Firebase Hosting
+## Cấu trúc thư mục
 
-### 1) Create a Firebase project
+| Đường dẫn | Nội dung |
+|---|---|
+| `content.ts` | Nội dung song ngữ + thông tin công ty |
+| `App.tsx`, `components/` | Bố cục các phần của trang |
+| `icons.tsx` | Biểu tượng nhúng dạng SVG |
+| `seo.ts` | Thẻ tiêu đề, mô tả, khai báo ngôn ngữ, dữ liệu có cấu trúc cho Google |
+| `scripts/prerender.mjs` | Bước dựng trang tĩnh và tạo `sitemap.xml` |
+| `api/sendInquiry.ts` | Hàm gửi email liên hệ qua Microsoft 365 |
+| `public/` | Ảnh, biểu tượng trang, `robots.txt`, `llms.txt` |
+| `tests/` | Kiểm thử tự động |
+| `vercel.json` | Cấu hình Vercel: chuyển hướng tên miền phụ, bộ nhớ đệm, đường dẫn tài liệu |
 
-- Go to https://console.firebase.google.com/
-- Create a new project and note the **Project ID**
+Các file `components/About.tsx`, `CoreValues.tsx`, `Expertise.tsx` và thư mục `functions/`, `firebase.json` là phần cũ, hiện **không dùng**.
 
-### 2) Configure this repo for Hosting (already scaffolded)
+## Biểu mẫu liên hệ – biến môi trường trên Vercel
 
-This repo includes:
+Giữ nguyên như trước: `MS_GRAPH_TENANT_ID`, `MS_GRAPH_CLIENT_ID`, `MS_GRAPH_CLIENT_SECRET`, `MS_GRAPH_SENDER`, `CONTACT_RECIPIENT`.
+Biểu mẫu có ô bẫy chống thư rác: thư do máy tự động gửi bị bỏ qua, không tốn lượt gửi email.
 
-- `firebase.json` (serves `dist` + SPA rewrite to `index.html`)
-- `.firebaserc` (set your Firebase Project ID)
+## Lệnh (chỉ cần khi chạy trên máy, cần Node.js 20 trở lên)
 
-Update `.firebaserc`:
+```bash
+npm install        # cài thư viện
+npm run build      # build vào thư mục dist
+npm run preview    # xem thử tại http://localhost:3000
+npm test           # build rồi chạy toàn bộ kiểm thử
+```
 
-- Replace `YOUR_FIREBASE_PROJECT_ID` with your real project id
+## Sau khi đưa lên mạng (làm một lần)
 
-### 3) Deploy
-
-Run:
-
-1. `npm install`
-2. `npm run firebase:login`
-3. `npm run firebase:deploy`
-
-After deploy finishes, Firebase will print your Hosting URL.
-
-## Contact form: Send Inquiry emails
-
-The "Send Inquiry" form posts to `/api/sendInquiry`, which is a Firebase Cloud Function rewrite. To actually send email, you must configure SMTP credentials for the function.
-
-### 1) Set SMTP config (required)
-
-Run (replace values):
-
-`npx --yes firebase-tools functions:config:set smtp.host="YOUR_SMTP_HOST" smtp.port="587" smtp.user="YOUR_SMTP_USER" smtp.pass="YOUR_SMTP_PASSWORD" smtp.from="VOV Smart <admin@vovsmart.net>"`
-
-Common SMTP ports: `587` (STARTTLS) or `465` (SSL).
-
-### 2) Deploy (Hosting + Functions)
-
-`npm run firebase:deploy`
-
-### Notes
-
-- If you use Gmail/Google Workspace, you typically need an **App Password** (not your normal password).
-- Without SMTP config, the API will return an error and no email will be sent.
-
-### Note about API keys
-
-If you provide `GEMINI_API_KEY` to a frontend build, it becomes part of the shipped JavaScript and is **not a secret**. For production use, consider moving Gemini calls to a backend (Cloud Functions/Cloud Run) and keep the key server-side.
+1. Vào Google Search Console, thêm tên miền `vovsmart.net` (loại "Domain", xác minh bằng bản ghi TXT tại nhà cung cấp tên miền).
+2. Gửi sơ đồ trang: `https://www.vovsmart.net/sitemap.xml`.
+3. Dùng công cụ kiểm tra URL cho `https://www.vovsmart.net/` và `https://www.vovsmart.net/vi`, chọn yêu cầu lập chỉ mục.
