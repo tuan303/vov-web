@@ -13,6 +13,8 @@
     }
   ],
   "rewrites": [
+    { "source": "/media/", "destination": "https://mediavovsmart.vercel.app/media/" },
+    { "source": "/media/admin/", "destination": "https://mediavovsmart.vercel.app/media/admin/" },
     {
       "source": "/media/:path*",
       "destination": "https://mediavovsmart.vercel.app/media/:path*"
