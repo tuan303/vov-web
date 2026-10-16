@@ -4,6 +4,7 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "redirects": [
+    { "source": "/media", "destination": "/media/", "permanent": true },
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "vov-web-eight.vercel.app" }],
@@ -12,6 +13,10 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/media/:path*",
+      "destination": "https://mediavovsmart.vercel.app/media/:path*"
+    },
     {
       "source": "/pdf/:path*",
       "destination": "https://document.vovsmart.net/pdf/:path*"
@@ -34,6 +39,10 @@
     }
   ],
   "headers": [
+    {
+      "source": "/media/:path*",
+      "headers": [{ "key": "x-vercel-enable-rewrite-caching", "value": "0" }]
+    },
     {
       "source": "/assets/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]

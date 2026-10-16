@@ -27,3 +27,5 @@ dist-ssr
 
 # Thư mục tạm khi build trang tĩnh
 .ssr
+.vercel
+.env*
